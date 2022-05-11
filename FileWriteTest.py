@@ -12,22 +12,25 @@ def writeToFile():
     writing = "y"
     while writing == "y":
         a = open("file1.txt", "a")
-        newLine = input("New Line (y/n)?" )
-        newLine = newLine.lower()
-        if newLine == "y":
-            a.write("\n")
-        elif newLine == "n":
-            textEntry = input("Input the text you want to add: ")
-            a.write(textEntry)
-            a.close()
-            print("File now reads:")
-            a = open("file1.txt", "r")
-            print(a.read())
-            print("[End of file]")
-            print()
-            writing = input("continue writing (y/n)? ")
-            writing = writing.lower()
-        else
+        def newline():
+            newLine = input("New Line (y/n)?" )
+            newLine = newLine.lower()
+            if newLine == "y":
+                a.write("\n")
+            elif newLine != "y" and newLine != "n":
+                print("invalid input")
+                newline()
+        newline()
+        textEntry = input("Input the text you want to add: ")
+        a.write(textEntry)
+        a.close()
+        print("File now reads:")
+        a = open("file1.txt", "r")
+        print(a.read())
+        print("[End of file]")
+        print()
+        writing = input("continue writing (y/n)? ")
+        writing = writing.lower()
     a.close()
     menu()
 
@@ -36,6 +39,7 @@ def purge():
     choice = choice.lower()
     if choice == "y":
         os.remove("file1.txt")
+        print("File deleted")
         menu()
     elif choice == "n":
         menu()
